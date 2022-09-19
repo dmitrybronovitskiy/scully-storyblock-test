@@ -1,0 +1,19 @@
+<div class="testemonials-slider-item w-full flex flex-col items-center" [appStoryblok]="_editable">
+  <img
+    *ngIf="imageUrl"
+    class="w-24 h-24 rounded-full shadow-circle-medium mb-10"
+    [src]="imageUrl"
+  >
+
+  <p class="text-center text-gray-400 mb-4">
+    {{quotation}}
+  </p>
+
+  <h3 class="text-lg">
+    {{name}}
+  </h3>
+
+  <h6 class="text-sm font-semibold text-red-500">
+    {{functionStr}}
+  </h6>
+</div>

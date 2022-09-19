@@ -1,37 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { ScullyLibModule } from '@scullyio/ng-lib';
-import { UserComponent } from './user/user.component';
-import { PageComponent } from './page/page.component';
-import { TeaserComponent } from './teaser/teaser.component';
-import { GridComponent } from './grid/grid.component';
-import { FeatureComponent } from './feature/feature.component';
-import { StoryblokDirective } from './storyblok.directive';
 import { DynamicModule } from 'ng-dynamic-component';
-import { StoryblokService } from './storyblok.service';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from '@app/modules/home/home.module';
+import { MarkdownModule } from 'ngx-markdown';
+import { NewsModule } from '@app/modules/news/news.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewsDetailsModule } from '@app/modules/news-details/news-details.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UserComponent,
-    PageComponent,
-    TeaserComponent,
-    GridComponent,
-    FeatureComponent,
-    StoryblokDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ScullyLibModule,
     DynamicModule,
+    SharedModule,
+    HomeModule,
+    NewsModule,
+    NewsDetailsModule,
+    MarkdownModule.forRoot({}),
+    BrowserAnimationsModule,
   ],
-  providers: [StoryblokService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

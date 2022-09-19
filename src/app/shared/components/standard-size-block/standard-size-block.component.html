@@ -1,0 +1,13 @@
+<div class="background-image flex justify-center w-full" [appStoryblok]="_editable">
+  <div
+    class="flex flex-col items-center justify-center w-full md:w-1280px"
+  >
+    <ng-container *ngFor="let item of content">
+      <ndc-dynamic
+        [ndcDynamicComponent]="components[item.component]"
+        [ndcDynamicInputs]="item"
+      >
+      </ndc-dynamic>
+    </ng-container>
+  </div>
+</div>

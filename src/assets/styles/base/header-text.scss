@@ -1,0 +1,24 @@
+.h1 {
+  @apply text-2xl;
+  @apply font-bold;
+}
+.h2 {
+  @apply text-xl;
+  @apply font-bold;
+}
+.h3 {
+  @apply text-lg;
+  @apply font-semibold;
+}
+.h4 {
+  @apply text-lg;
+  @apply font-medium;
+}
+.h5 {
+  @apply text-base;
+  @apply font-semibold;
+}
+.h6 {
+  @apply text-base;
+  @apply font-medium;
+}

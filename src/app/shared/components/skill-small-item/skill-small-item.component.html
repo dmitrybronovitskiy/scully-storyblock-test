@@ -1,0 +1,28 @@
+<div class="flex">
+  <div class="flex-shrink-0">
+    <img
+      class="w-32 h-32 object-contain"
+      [src]="image?.filename"
+      [alt]="image?.alt"
+    >
+  </div>
+
+  <div class="text-left ml-3">
+    <h4 class="text-lg font-semibold mb-4">
+      {{title}}
+    </h4>
+
+    <p>{{description}}</p>
+
+    <a
+      class="inline-block bg-green-500 p-2.5 mt-5 rounded-md hover:bg-green-400 no-underline text-white"
+      [ngStyle]="{
+        'color': buttonTextColor,
+        'background-color': buttonColor
+      }"
+      [routerLink]="[linkUrl]"
+    >
+      {{linkName}}
+    </a>
+  </div>
+</div>

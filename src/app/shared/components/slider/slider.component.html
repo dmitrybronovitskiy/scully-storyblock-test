@@ -1,0 +1,21 @@
+<div class="slider" [appStoryblok]="_editable">
+  <div class="w-full">
+    <splide [options]="{
+      type: 'fade',
+      rewind: true,
+      autoplay: true,
+      variableWidth: true,
+      autoWidth: true,
+      autoHeight: true
+    }"
+    >
+      <splide-slide *ngFor="let item of sliderItem">
+        <ndc-dynamic
+          [ndcDynamicComponent]="components[item.component]"
+          [ndcDynamicInputs]="item"
+        >
+        </ndc-dynamic>
+      </splide-slide>
+    </splide>
+  </div>
+</div>

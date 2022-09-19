@@ -1,0 +1,30 @@
+<div class="last-news flex justify-center mx-4 my-8">
+  <div class="w-full md:w-768px">
+    <div *ngIf="content" class="news flex flex-col">
+      <img
+        class="w-full mb-2"
+        [src]="content.image.filename"
+      >
+
+      <h4
+        [ngStyle]="{ 'color': content.titleColor }"
+      >
+        {{content.title}}
+      </h4>
+
+      <p
+        class="text-sm"
+        [ngStyle]="{ 'color': content.createdAtColor }"
+      >
+        {{content.createdAt | date:'d LLLL YYYY'}}
+      </p>
+
+      <p
+        class="mt-4"
+        [ngStyle]="{ 'color': content.contentColor }"
+      >
+        <markdown [data]="content.content"></markdown>
+      </p>
+    </div>
+  </div>
+</div>

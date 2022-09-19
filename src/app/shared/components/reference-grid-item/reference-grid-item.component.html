@@ -1,0 +1,41 @@
+<div
+  class="w-full flex flex-col mb-5 shadow-box-medium rounded-lg text-center"
+  [ngStyle]="{ 'background-color': backgroundColor }"
+>
+  <img
+    *ngIf="imageUrl"
+    class="w-full object-cover rounded-t-lg mb-5"
+    [src]="imageUrl"
+  >
+
+  <div class="flex flex-col p-5">
+    <h4
+      class="cursor-pointer"
+      [ngStyle]="{ 'color': headlineColor }"
+      (click)="onRedirect()"
+    >
+      {{headline}}
+    </h4>
+
+    <p
+      *ngIf="content"
+      class="mt-5"
+      [ngStyle]="{ 'color': contentColor }"
+    >
+      {{content}}
+    </p>
+
+    <div
+      *ngIf="showButton"
+      class="flex justify-center mt-5"
+    >
+      <button
+        class="flex items-center text-white hover:opacity-70 p-2 rounded-lg"
+        [ngStyle]="{ 'color': buttonTextColor, 'background-color': buttonColor }"
+        (click)="onRedirect()"
+      >
+        {{buttonText}}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="factsbox-container bg-white flex justify-center"  [appStoryblok]="_editable">
+  <div
+    class="hidden lg:flex justify-between max-w-7xl w-full mx-4 px-8 py-12 rounded-md text-center"
+    [ngStyle]="{ 'background-color': backgroundColor }"
+  >
+    <ng-container *ngFor="let item of items">
+      <ndc-dynamic
+        [ndcDynamicComponent]="components[item.component]"
+        [ndcDynamicInputs]="item"
+      >
+      </ndc-dynamic>
+    </ng-container>
+  </div>
+</div>

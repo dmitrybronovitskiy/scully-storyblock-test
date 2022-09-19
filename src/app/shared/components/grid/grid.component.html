@@ -1,0 +1,12 @@
+<div class="grid-component mx-4 flex" [appStoryblok]="_editable">
+  <div
+    *ngFor="let item of items"
+    class="flex-1 px-4 flex justify-center"
+  >
+    <ndc-dynamic
+      [ndcDynamicComponent]="components[item.component]"
+      [ndcDynamicInputs]="item"
+    >
+    </ndc-dynamic>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div
+  class="bg-no-repeat bg-center bg-cover p-4 rounded"
+  [appStoryblok]="_editable"
+  [ngStyle]="{
+    'background-image': backgroundImageUrl,
+    'background-color': backgroundColor
+  }"
+>
+  <div
+    *ngIf="!textAndImage"
+    class="mb-4"
+  >
+    <h3
+      class="text-center"
+      [ngStyle]="{'color': headLineColor}"
+    >
+      {{headLine}}
+    </h3>
+
+    <h6
+      *ngIf="subline"
+      class="text-center"
+      [ngStyle]="{'color': sublineColor}"
+    >
+      {{subline}}
+    </h6>
+  </div>
+
+  <div
+    class="flex"
+    [class]="{'items-center': textAndImage}"
+  >
+    <img
+      *ngIf="image.filename"
+      class=" flex-1"
+      [class]="{'w-1/2': textAndImage, 'mr-4': textAndImage, 'w-full': !textAndImage}"
+      [src]="image.filename"
+    >
+
+    <ng-container *ngIf="!textAndImage">
+      <div
+        class="flex-1"
+        [ngStyle]="{'color': textColor}"
+      >
+        {{text}}
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="textAndImage">
+      <div
+        class="flex-1 w-1/2 ml-4"
+      >
+        <h3
+          class="text-left"
+          [ngStyle]="{'color': headLineColor}"
+        >
+          {{headLine}}
+        </h3>
+
+        <h6
+          *ngIf="subline"
+          class="text-left"
+          [ngStyle]="{'color': sublineColor}"
+        >
+          {{subline}}
+        </h6>
+
+        <div [ngStyle]="{'color': textColor}">
+          {{text}}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div
+    *ngIf="buttonText && buttonLink"
+    class="flex justify-center mt-4"
+  >
+    <button
+      class="flex items-center text-white hover:opacity-70 p-2 rounded-lg"
+      [ngStyle]="{'background-color': buttonColor}"
+      (click)="onRedirect()"
+    >
+      {{buttonText}}
+    </button>
+  </div>
+</div>

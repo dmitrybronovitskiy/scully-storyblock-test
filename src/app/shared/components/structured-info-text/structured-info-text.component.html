@@ -1,0 +1,23 @@
+<div class="flex justify-center" [appStoryblok]="_editable">
+  <div class="w-full mx-4">
+    <div class="flex flex-col md:flex-row w-full">
+      <div class="w-full md:w-2/6 mr-7">
+        <div class="border-t-2 border-gray-400 pt-4" [style.border-color]="lineColor">
+          <h5 class="text-lg text-gray-400" [style.color]="sublineColor">
+            {{subline}}
+          </h5>
+        </div>
+      </div>
+
+      <div class="w-full md:w-4/6">
+        <h6 class="text-lg font-semibold" [style.color]="headlineColor">
+          {{headline}}
+        </h6>
+
+        <p class="mt-5">
+          <markdown [data]="content"></markdown>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

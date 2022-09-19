@@ -1,0 +1,197 @@
+<div
+  class="header z-10 transition fixed flex items-center justify-center w-full inset-0 "
+  [class]="isHeaderAbsolute ? 'shadow-base bg-slate-50 h-24' : 'bg-transparent text-white h-28'"
+  [appStoryblok]="_editable"
+>
+  <div class="md:w-1280px w-full px-4">
+    <div class="flex justify-between py-2">
+      <div class="flex items-center">
+        <img
+          class="w-40 h-16 object-cover"
+          [src]="logo.filename"
+        >
+      </div>
+
+      <div class="hidden lg:block">
+        <div class="flex justify-end text-lg">
+          <a
+            *ngFor="let item of topHeader"
+            class="px-4 py-2.5 inline-flex items-center rounded-lg hover:bg-black hover:bg-opacity-10 no-underline"
+            [appStoryblok]="item._editable!"
+            [class]="isHeaderAbsolute ? 'text-black' : 'text-white'"
+            (click)="redirectTo(item.url)"
+          >
+            {{item.title}}
+          </a>
+
+          <button data-dropdown-toggle="search-drop-down" class="menu-drop-down-button hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </button>
+        </div>
+
+        <div class="flex items-center">
+          <a
+            class="hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center"
+            [class]="isHeaderAbsolute ? 'text-black' : 'text-white'"
+            (click)="redirectTo('/')"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+          </a>
+
+          <div *ngFor="let item of subHeader">
+            <a
+              *ngIf="item.component === 'link'"
+              class="px-4 py-2.5 inline-flex items-center rounded-lg hover:bg-black hover:bg-opacity-10 no-underline"
+              [class]="isHeaderAbsolute ? 'text-black' : 'text-white'"
+              [appStoryblok]="item._editable!"
+              (click)="redirectTo($any(item).url)"
+            >
+              {{item.title}}
+            </a>
+
+            <div
+              *ngIf="item.component === 'modalLink'"
+              class="relative"
+            >
+              <button
+                class="menu-drop-down-button hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center"
+                type="button"
+                [attr.data-dropdown-toggle]="generateId(item.title)+'-drop-down'"
+                [appStoryblok]="item._editable!"
+                (click)="onSubMenuClick($event)"
+              >
+                {{item.title}}
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+
+              <div [id]="generateId(item.title)+'-drop-down'" class="menu-drop-down-content absolute right-0 hidden z-10 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700">
+                <div class="flex">
+                  <div class="flex flex-col">
+                    <a
+                      *ngFor="let leftItem of $any(item).leftBlock"
+                      class="flex p-5 text-black no-underline cursor-pointer"
+                      [class]="isHeaderAbsolute ? 'text-black' : 'text-white'"
+                      [style]="{ 'background-image': leftItem.background }"
+                      [appStoryblok]="leftItem._editable!"
+                      (click)="redirectTo(leftItem.url)"
+                    >
+                      <div class="flex flex-col">
+                        <img [src]="leftItem.image.filename" class="w-12 h-12 mb-4 object-cover">
+
+                        <div class="w-80">
+                          <h3 class="text-xl font-semibold">
+                            {{leftItem.title}}
+                          </h3>
+
+                          <p class="">
+                            {{leftItem.description}}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="flex items-end ml-4">
+                        <div class="border rounded-full p-1 hover:bg-black hover:bg-opacity-10">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <ul class="py-5 w-64 text-sm text-gray-700 dark:text-gray-200 list-none" aria-labelledby="dropdownDefault">
+                    <li *ngFor="let rightItem of $any(item).rightBlock">
+                      <a
+                        class="block text-black no-underline px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                        [appStoryblok]="rightItem._editable!"
+                        (click)="redirectTo(rightItem.url)"
+                      >
+                        {{rightItem.title}}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block lg:hidden flex items-center">
+        <a
+          href="/"
+          class="hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center"
+          [class]="isHeaderAbsolute ? 'text-black' : 'text-white'"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+        </a>
+
+        <button data-dropdown-toggle="search-drop-down" class="menu-drop-down-button hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </button>
+
+        <button
+          class="right-menu-button hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center" type="button"
+          (click)="openRightMenu()"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="right-menu-container z-10 transition-width duration-500 fixed inset-0 w-0 h-screen bg-white overflow-hidden">
+  <div class="flex justify-end mb-4">
+    <button
+      class="right-menu-close hover:bg-black hover:bg-opacity-10 focus:outline-none rounded-lg px-4 py-2.5 text-center inline-flex items-center" type="button"
+      (click)="openRightMenu()"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+  </div>
+
+  <div class="flex flex-col h-[calc(100vh_-_60px)] overflow-x-auto mx-8 mb-2">
+    <ng-container *ngFor="let item of fullItems">
+      <a
+        *ngIf="item.component === 'link'"
+        class="flex justify-between text-lg mb-2 pb-2 border-b border-gray-400 no-underline text-black"
+        [appStoryblok]="item._editable!"
+        (click)="redirectTo(item.url)"
+      >
+        <span>{{item.title}}</span>
+
+        <div class="flex items-center">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </div>
+      </a>
+
+      <div
+        *ngIf="item.component === 'modalLink'"
+        class="expansion-panel"
+        [appStoryblok]="item._editable!"
+        (click)="onExpansionPanelClick($event)"
+      >
+        <button class="expansion-panel-button flex justify-between w-full text-lg mb-2 pb-2 border-b border-gray-400">
+          {{item.title}}
+        </button>
+
+        <div class="expansion-panel-content transition-height duration-500 h-0 mx-4 overflow-hidden">
+          <div class="expansion-panel-container">
+            <a
+              *ngFor="let modalLinkItem of getFullModalLinkItems(item)"
+              class="flex justify-between text-lg mb-2 pb-2 border-b border-gray-400 no-underline text-black"
+              [appStoryblok]="modalLinkItem._editable!"
+              (click)="redirectTo(modalLinkItem.url)"
+            >
+              <span>{{modalLinkItem.title}}</span>
+
+              <div class="flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

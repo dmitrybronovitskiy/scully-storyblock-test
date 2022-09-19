@@ -1,0 +1,22 @@
+<div class="factsbox-item flex items-center text-left text-white mx-4">
+  <img
+    class="w-12 h-12 rounded-full"
+    [src]="image.filename"
+  >
+
+  <div class="flex flex-col ml-4">
+    <span
+      class="text-lg leading-5"
+      [style.color]="headlineColor"
+    >
+      {{headline}}
+    </span>
+
+    <span
+      class="text-sm uppercase leading-4 mt-1"
+      [style.color]="sublineColor"
+    >
+      {{subline}}
+    </span>
+  </div>
+</div>

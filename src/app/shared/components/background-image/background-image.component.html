@@ -1,0 +1,17 @@
+<div class="background-image flex justify-center w-full" [appStoryblok]="_editable">
+  <div
+    class="bg-no-repeat bg-center bg-cover flex justify-center"
+    [ngStyle]="{ 'background-image': backgroundImage, 'min-height': minHeight }"
+    [ngClass]="{ 'w-full': fullwidth, 'md:w-1280px': !fullwidth, 'bg-fixed': parallax }"
+  >
+    <div class="mx-4 my-4">
+      <div *ngFor="let item of contentelement">
+        <ndc-dynamic
+          [ndcDynamicComponent]="components[item.component]"
+          [ndcDynamicInputs]="item"
+        >
+        </ndc-dynamic>
+      </div>
+    </div>
+  </div>
+</div>

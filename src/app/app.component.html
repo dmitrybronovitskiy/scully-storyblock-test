@@ -1,1 +1,9 @@
+<div *ngIf="story.content">
+  <ndc-dynamic
+    [ndcDynamicComponent]="components['header']"
+    [ndcDynamicInputs]="this.story.content"
+  >
+  </ndc-dynamic>
+</div>
+
 <router-outlet></router-outlet>

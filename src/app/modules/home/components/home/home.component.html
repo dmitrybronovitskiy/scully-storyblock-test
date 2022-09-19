@@ -1,0 +1,12 @@
+<div class="root">
+  <div *ngIf="story.content">
+    <ng-container *ngFor="let content of this.story.content.pageContant">
+      <ndc-dynamic
+        [ndcDynamicComponent]="components[content.component]"
+        [ndcDynamicInputs]="content"
+      >
+      </ndc-dynamic>
+    </ng-container>
+  </div>
+
+</div>

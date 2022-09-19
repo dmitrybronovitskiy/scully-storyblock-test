@@ -1,0 +1,27 @@
+<div class="headline flex justify-center mx-4" [appStoryblok]="_editable">
+  <div class="flex flex-col w-full">
+    <div
+      [class]="generateHeadlineClass"
+      [ngStyle]="{ 'text-align': alignment, 'color': headlineColor }"
+    >
+      {{headline}}
+    </div>
+
+    <div
+      *ngIf="border"
+      class="flex justify-center"
+    >
+      <div
+        class="border-t-2 w-44 my-5"
+        [style.border-color]="borderColor"
+      ></div>
+    </div>
+
+    <div
+      [class]="generateSublineClass"
+      [ngStyle]="{ 'text-align': alignment, 'color': sublineColor }"
+    >
+      {{subline}}
+    </div>
+  </div>
+</div>

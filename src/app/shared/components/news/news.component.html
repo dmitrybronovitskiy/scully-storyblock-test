@@ -1,0 +1,35 @@
+<div class="news flex flex-col" [appStoryblok]="_editable">
+  <img
+    class="w-full mb-2"
+    [src]="image.filename"
+  >
+
+  <h4
+    [ngStyle]="{ 'color': titleColor }"
+  >
+    {{title}}
+  </h4>
+
+  <p
+    class="text-sm"
+    [ngStyle]="{ 'color': createdAtColor }"
+  >
+    {{createdAt | date:'d LLLL YYYY'}}
+  </p>
+
+  <p
+    class="mt-4 line-clamp-5"
+    [ngStyle]="{ 'color': contentColor }"
+  >
+    <markdown [data]="content"></markdown>
+  </p>
+
+  <a
+    *ngIf="showMoreText"
+    class="no-underline hover:underline"
+    [ngStyle]="{ 'color': showMoreTextColor }"
+    [routerLink]="['/newscontanier', slug]"
+  >
+    {{showMoreText}}
+  </a>
+</div>

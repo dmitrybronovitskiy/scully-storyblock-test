@@ -1,0 +1,36 @@
+<div class="accordion-element">
+  <button
+    class="flex justify-between items-center w-full text-lg font-semibold mb-2 pb-2"
+    (click)="onChangeStatus()"
+  >
+    {{headline}}
+
+    <div class="flex items-center">
+      <svg
+        [class.hidden]="isOpen"
+        class="icon-down w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+      <svg
+        [class.hidden]="!isOpen"
+        class="icon-up w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+      </svg>
+    </div>
+  </button>
+
+  <div
+    [style.height]="blockHeight"
+    class="transition-height duration-500 overflow-hidden border-b border-gray-400"
+  >
+    <div #expansionPanelContainer class="mx-4 pb-4">
+      <div class="flex">
+        <img
+          *ngIf="image?.filename"
+          class="mr-8"
+          [src]="image.filename"
+          [style.width]="imageSize"
+        >
+        <markdown [data]="content"></markdown>
+      </div>
+    </div>
+  </div>
+</div>

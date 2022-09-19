@@ -1,0 +1,11 @@
+<div class="full-width-image-box" [appStoryblok]="_editable">
+  <div class="w-full flex flex-col overflow-hidden">
+    <ng-container *ngFor="let item of grid">
+      <ndc-dynamic
+        [ndcDynamicComponent]="components[item.component]"
+        [ndcDynamicInputs]="item"
+      >
+      </ndc-dynamic>
+    </ng-container>
+  </div>
+</div>

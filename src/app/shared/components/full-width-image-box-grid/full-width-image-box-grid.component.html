@@ -1,0 +1,34 @@
+<div
+  class="full-width-image-box-grid md:flex"
+  [class.flex-row-reverse]="type === 'devided'"
+  [appStoryblok]="_editable"
+>
+  <div class="flex w-full md:w-1/2">
+    <div
+      *ngFor="let item of leftColumn"
+      class="w-full"
+    >
+      <ndc-dynamic
+        [ndcDynamicComponent]="components[item.component]"
+        [ndcDynamicInputs]="getBigBlockParams(item)"
+      >
+      </ndc-dynamic>
+    </div>
+  </div>
+
+  <div
+    class="flex w-full md:w-1/2"
+    [class.flex-row-reverse]="type === 'devided'"
+  >
+    <div
+      *ngFor="let item of rightColumn"
+      class="w-full"
+    >
+      <ndc-dynamic
+        [ndcDynamicComponent]="components[item.component]"
+        [ndcDynamicInputs]="getSmallBlockParams(item)"
+      >
+      </ndc-dynamic>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,3 @@
-
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -13,7 +12,8 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "typeRoots": ["../node_modules/@types"],
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   },
-  "exclude": ["./**/*spec.ts"]
+  "exclude": ["./**/*spec.ts"],
+  "include": ["../src/environments/*"]
 }

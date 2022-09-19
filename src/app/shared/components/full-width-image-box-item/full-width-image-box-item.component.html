@@ -1,0 +1,24 @@
+<div
+  class="h-500px relative flex items-center text-center w-full bg-no-repeat bg-center bg-cover"
+  [ngStyle]="{
+    'background-image': backgroundImageUrl,
+    'bg-white': !isBigBlock && ctaText
+  }"
+  [appStoryblok]="_editable"
+>
+  <div>
+
+    <div
+      *ngIf="!isBigBlock && backgroundImageUrl"
+      class="absolute -left-2 top-1/2 rotate-45 transform -translate-y-1/2 z-[2] w-4 h-4 bg-white"
+      [class]="{ '-left-2': parentType !== 'devided', '-right-2': parentType === 'devided' }"
+    ></div>
+
+    <a
+      [class]="textClass"
+      [routerLink]="[ctaLink]"
+    >
+      {{ctaText}}
+    </a>
+  </div>
+</div>
